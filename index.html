@@ -1,14 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Webpage</title>
-    <!-- Link to external CSS file -->
-    <link rel="stylesheet" href="style.css">
+    <title>Movie Website</title>
+    <style>
+        /* Basic Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+        }
+
+        /* Search Bar Styling */
+        .search-container {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .search-box {
+            width: 80%;
+            max-width: 400px;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: none;
+        }
+
+        .latest-released h3 {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 30px;
+            color: #fff;
+            background-color: #ff5733;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .movie-grid {
+            display: grid;
+            gap: 20px;
+            padding: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        }
+
+        .movie-card {
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            text-align: center;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .movie-card img {
+            width: 100%;
+            height: auto;
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Hello, World!</h1>
-    <p>This is a sample webpage.</p>
+    <h1>CineArena.live</h1>
+    
+    <div class="search-container">
+        <input type="text" id="search" class="search-box" placeholder="Search movies...">
+    </div>
+
+    <section class="latest-released">
+        <h3>Latest Released Movie</h3>
+        <div class="movie-grid" id="movieGrid">
+            <div class="movie-card" data-title="Movie Title 1">
+                <img src="download1.jpeg" alt="Movie 1">
+                <h4>Movie Title 1</h4>
+            </div>
+            <div class="movie-card" data-title="Movie Title 2">
+                <img src="download2.jpeg" alt="Movie 2">
+                <h4>Movie Title 2</h4>
+            </div>
+            <div class="movie-card" data-title="Movie Title 3">
+                <img src="download3.jpeg" alt="Movie 3">
+                <h4>Movie Title 3</h4>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.getElementById('search').addEventListener('input', function () {
+            let searchValue = this.value.toLowerCase();
+            let movies = document.querySelectorAll('.movie-card');
+
+            movies.forEach(movie => {
+                let title = movie.getAttribute('data-title').toLowerCase();
+                if (title.includes(searchValue)) {
+                    movie.style.display = "flex";
+                } else {
+                    movie.style.display = "none";
+                }
+            });
+        });
+    </script>
 </body>
-</html>
+    </html>
+    
